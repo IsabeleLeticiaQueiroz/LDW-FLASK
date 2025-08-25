@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Games</title>
+  </head>
+  <body>
+    <h1>Essa é a pagina de games</h1>
+    <h3>Jogo em destaque</h3>
+    <ul>
+      <li>Titulo: <strong>{{title}}</strong></li>
+      <li>Ano: <strong>{{year}}</strong></li>
+      <li>Categoria: <strong>{{category}}</strong></li>
+    </ul>
+    <h3>Está sendo jogado por</h3>
+    <ol>
+      {%for player in players%}
+      <li>{{player}}</li>
+      {%endfor%}
+      <h4>Console mais bem avaliado</h4>
+      {% for key, value in console.items() %}
+      <details>
+            <summary>{{key}}</summary>
+            <p>{{value}}</p>
+      </details>
+      {%endfor%}
+    </ol>
+  </body>
+</html>

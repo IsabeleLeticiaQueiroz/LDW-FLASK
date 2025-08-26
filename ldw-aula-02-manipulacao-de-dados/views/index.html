@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Games</title>
-</head>
-<body>
+    {%extends 'base.html'%}
+    {% block content %}
     <h2>Essa é a homepage</h2>
     <hr>
-</body>
-</html>
+    <!-- no flask é mais recomendável linkar pela função e nao url -->
+    <a href="{{url_for('games')}}"><p>Ir para a página de jogos</p></a>
+    {% endblock %}

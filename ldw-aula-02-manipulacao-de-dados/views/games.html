@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Games</title>
-  </head>
-  <body>
+{%extends 'base.html'%}
+    {% block content %}
     <h1>Essa é a pagina de games</h1>
     <h3>Jogo em destaque</h3>
     <ul>
@@ -17,7 +11,15 @@
     <ol>
       {%for player in players%}
       <li>{{player}}</li>
-      {%endfor%}
+            {%endfor%}
+    </ol>
+    <hr>
+    <form action="{{ url_for('games') }}" method="post">
+      <label for="player">Jogador</label>
+      <input type="text" name="player" class="form-control w-50">
+      <input type="submit" value="Entrar" class="btn btn-success">
+    </form>
+    <hr>
       <h4>Console mais bem avaliado</h4>
       {% for key, value in console.items() %}
       <details>
@@ -25,6 +27,6 @@
             <p>{{value}}</p>
       </details>
       {%endfor%}
-    </ol>
-  </body>
-</html>
+      {% endblock content%}
+
+

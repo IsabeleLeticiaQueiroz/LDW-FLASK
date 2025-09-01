@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-body">
+<div class="modern-container">
+    <div class="modern-grid">
+        <div>
+            <h2 class="modern-title">Adicionar Nova Família</h2>
+            <div class="modern-form">
+                <form method="POST">
+                    <div class="mb-4">
+                        <label for="nome_familia" class="form-label">
+                            <i class="bi bi-people-fill modern-icon"></i>Nome da Família
+                        </label>
+                        <input type="text" class="form-control" id="nome_familia" name="nome_familia" required placeholder="Ex: Família Coelho">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="especie" class="form-label">
+                            <i class="bi bi-heart-fill modern-icon"></i>Espécie
+                        </label>
+                        <select class="form-control" id="especie" name="especie" required>
+                            <option value="">Selecione a espécie</option>
+                            <option value="Coelho">Coelho</option>
+                            <option value="Urso">Urso</option>
+                            <option value="Gato">Gato</option>
+                            <option value="Cachorro">Cachorro</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="casa" class="form-label">
+                            <i class="bi bi-house-fill modern-icon"></i>Casa/Fazenda
+                        </label>
+                        <input type="text" class="form-control" id="casa" name="casa" required placeholder="Ex: Casa da Árvore">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="membros" class="form-label">
+                            <i class="bi bi-person-plus modern-icon"></i>Número de Membros
+                        </label>
+                        <input type="number" class="form-control" id="membros" name="membros" min="1" max="10" required>
+                    </div>
+                  
+                    
+                    <button type="submit" class="btn modern-btn">
+                        <i class="bi bi-plus-circle"></i> Adicionar Família
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div>
+            <h2 class="modern-title">Famílias Cadastradas</h2>
+            
+            {% if familias %}
+                <div class="row">
+                    {% for familia in familias %}
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 sylvanian-card">
+                            
+                            <div class="card-body">
+                                <h5 class="card-title">{{ familia.nome_familia }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ familia.especie }}</h6>
+                                <p class="card-text">
+                                    <i class="bi bi-house"></i> {{ familia.casa }}<br>
+                                    <i class="bi bi-people"></i> {{ familia.membros }} membros
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="modern-alert">
+                    <i class="bi bi-info-circle-fill"></i>
+                    Nenhuma família cadastrada ainda. Use o formulário ao lado para adicionar famílias!
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

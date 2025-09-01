@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="modern-container">
+    <div class="modern-grid">
+        <!-- Formulário Moderno -->
+        <div>
+            <h2 class="modern-title">Adicionar Novo Personagem</h2>
+            <div class="modern-form">
+                <form method="POST">
+                    <div class="mb-4">
+                        <label for="nome" class="form-label">
+                            <i class="bi bi-person-circle modern-icon"></i>Nome do Personagem
+                        </label>
+                        <input type="text" class="form-control" id="nome" name="nome" required placeholder="Ex: Coelhinho Felício">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="familia" class="form-label">
+                            <i class="bi bi-people-fill modern-icon"></i>Família
+                        </label>
+                        <input type="text" class="form-control" id="familia" name="familia" required placeholder="Ex: Família Coelho">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="idade" class="form-label">
+                            <i class="bi bi-balloon modern-icon"></i>Idade
+                        </label>
+                        <input type="text" class="form-control" id="idade" name="idade" required placeholder="Ex: 5 anos">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="profissao" class="form-label">
+                            <i class="bi bi-briefcase modern-icon"></i>Profissão
+                        </label>
+                        <input type="text" class="form-control" id="profissao" name="profissao" required placeholder="Ex: Padeiro">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="caracteristica" class="form-label">
+                            <i class="bi bi-stars modern-icon"></i>Característica Especial
+                        </label>
+                        <textarea class="form-control" id="caracteristica" name="caracteristica" rows="3" required placeholder="Ex: Adora fazer pães com formato de cenoura"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn modern-btn w-100">
+                        <i class="bi bi-plus-circle"></i> Adicionar Personagem
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Tabela Moderna com Imagens -->
+        <div>
+            <h3 >Personagens por Família</h3>
+            
+            {% if personagens %}
+                {% for familia, chars in personagens.items() %}
+                <div class="modern-table-container mb-4">
+                    <h3 style="color: rgb(46, 46, 46); font-size: 18px !important; text-align: center;">{{ familia }}</h3>
+                    <div class="table-responsive">
+                        <table class="table modern-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Idade</th>
+                                    <th>Profissão</th>
+                                    <th>Característica</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for char in chars %}
+                                <tr>
+                                    <td><strong>{{ char.nome }}</strong></td>
+                                    <td>{{ char.idade }}</td>
+                                    <td>{{ char.profissao }}</td>
+                                    <td>{{ char.caracteristica }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="modern-alert">
+                    <i class="bi bi-info-circle-fill"></i>
+                    Nenhum personagem adicionado ainda. Use o formulário ao lado para adicionar personagens!
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

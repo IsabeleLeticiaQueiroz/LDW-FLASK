@@ -2,10 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
-# lista familias
 familias = []
-
-# dic. personagens
 personagens = {}
 
 @app.route('/')
@@ -21,18 +18,13 @@ def lista_familias():
         membros = request.form['membros']
         print("=== DADOS RECEBIDOS ===")
         print("Nome:", nome_familia)
-        
-        # Adiciona a família à lista
         familias.append({
             'nome_familia': nome_familia,
             'especie': especie,
             'casa': casa,
             'membros': membros,
-           
         })
-        
         return redirect(url_for('lista_familias'))
-    
     return render_template('lista_familias.html', familias=familias)
 
 @app.route('/personagens', methods=['GET', 'POST'])
@@ -43,8 +35,6 @@ def tabela_personagens():
         idade = request.form['idade']
         profissao = request.form['profissao']
         caracteristica = request.form['caracteristica']
-        
-        # dic. de personagnes
         if familia not in personagens:
             personagens[familia] = []
         personagens[familia].append({
@@ -53,9 +43,7 @@ def tabela_personagens():
             'profissao': profissao,
             'caracteristica': caracteristica,
         })
-        
         return redirect(url_for('tabela_personagens'))
-    
     return render_template('tabela_personagens.html', personagens=personagens)
 
 if __name__ == '__main__':

@@ -57,11 +57,30 @@ body {
     font-weight: 500;
     font-size: 1.1rem;
     padding: 0.8rem 1.5rem !important;
-    margin: 0;
+    margin: 0 0.2rem;
+    transition: all 0.3s ease;
+    position: relative;
 }
 
 .sylvanian-navbar .nav-link:hover {
-    color: var(--sylvanian-pink) !important;
+    color: #8a6bc9 !important;
+    transform: translateY(-2px);
+}
+
+.sylvanian-navbar .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #8a6bc9;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.sylvanian-navbar .nav-link:hover::after {
+    width: 70%;
 }
 
 .full-width-banner {
@@ -97,7 +116,6 @@ footer{
     background-color: #dddefa;
 }
 
-/* Container principal modernizado */
 .modern-container {
     border-radius: 16px;
     padding: 2.5rem;
@@ -108,25 +126,24 @@ footer{
     
 
 }
-/* Títulos mais sutis */
+
 .modern-title {
-    color: #6c757d; /* Cinza médio */
+    color: #6c757d;
     font-weight: 500;
-    font-size: 1.5rem; /* Menor */
+    font-size: 1.5rem; 
     margin-bottom: 1.5rem;
     position: relative;
-    text-align: left; /* Alinhado à esquerda */
+    text-align: left; 
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid #e9ecef; /* Linha sutil */
+    border-bottom: 2px solid #e9ecef;
 }
 
 .modern-title::after {
-    display: none; /* Remove o sublinhado colorido */
+    display: none; 
 }
 
-/* Botões mais discretos */
 .modern-btn {
-    background: #6c757d; /* Cinza médio */
+    background: #6c757d;
     border: none;
     border-radius: 8px;
     padding: 0.75rem 1.5rem;
@@ -142,7 +159,7 @@ footer{
 .modern-btn:hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
-    background: #5a6268; /* Cinza um pouco mais escuro */
+    background: #5a6268; 
     color: white;
 }
 
@@ -174,14 +191,14 @@ footer{
     box-shadow: 0 0 0 2px rgba(108, 117, 125, 0.1);
 }
 
-/* Ícones mais discretos */
+
 .modern-icon {
     color: #6c757d;
     margin-right: 0.5rem;
     font-size: 1rem;
 }
 
-/* Header de família mais simples */
+
 .modern-family-header {
     color: #6c757d;
     font-weight: 500;
@@ -197,7 +214,7 @@ footer{
     transform: translateY(-2px);
 }
 
-/* Botão moderno */
+
 .modern-btn {
     background-color: #fe9ec3;
     border: none;
@@ -217,7 +234,6 @@ footer{
     color: white;
 }
 
-/* Tabela moderna */
 .modern-table-container {
     background: #ffffff;
     border-radius: 20px;
@@ -289,7 +305,7 @@ footer{
     font-weight: 500;
 }
 
-/* Grid moderno */
+
 .modern-grid {
     display: grid;
     gap: 3rem;
@@ -298,7 +314,7 @@ footer{
 .espacinho{
     margin-top: 50px;
 }
-/* Estilos para imagens nas tabelas */
+
 .table img {
     border: 2px solid #e8e8e8;
     transition: all 0.3s ease;
@@ -309,12 +325,11 @@ footer{
     border-color: var(--sylvanian-pink);
 }
 
-/* Placeholder para imagens ausentes */
+
 .bg-light {
     background-color: #f8f9fa !important;
 }
 
-/* Ajuste para cards com imagens */
 .card-img-top {
     transition: transform 0.3s ease;
 }
@@ -329,14 +344,13 @@ footer{
     }
 }
 
-/* Ícones modernos */
+
 .modern-icon {
     color: var(--sylvanian-pink);
     margin-right: 0.8rem;
     font-size: 1.2rem;
 }
 
-/* Cards modernos (para página inicial) */
 .sylvanian-card {
     border: none;
     border-radius: 20px;
@@ -375,7 +389,7 @@ footer{
     box-shadow: 0 6px 20px rgba(255, 158, 195, 0.4);
     color: white;
 }
-/* Estilos para imagens nas tabelas */
+
 .table img {
     border: 2px solid #e8e8e8;
     transition: all 0.3s ease;

@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <!-- Área do logo Sylvanianpedia -->
     <div class="sylvanianpedia-logo">
         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Sylvanianpedia" class="logo-image">
         <!-- <p class="text-center slogan">Sua Enciclopédia de Famílias Fofinhas</p> -->
@@ -30,7 +29,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto"> <!-- Centralizado -->
+                <ul class="navbar-nav mx-auto"> 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('index') }}">Início</a>
                     </li>

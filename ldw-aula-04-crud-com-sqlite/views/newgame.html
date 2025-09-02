@@ -1,0 +1,29 @@
+    {%extends 'base.html'%}
+    {% block content %}
+    <h1>Cadastro de jogos</h1>
+    <hr>
+    <form action="" method="post">
+        <label>Titulo:</label>
+        <input type="text" name="title">
+        <label>Ano</label>
+        <input type="number" name="year">
+        <label>Categoria</label>
+        <input type="text" name="category">
+        <input type="submit" value="Cadastrar">
+    </form>
+    <br>
+    <hr>
+    <table>
+        <th>titulo</th>
+        <th>ano</th>
+        <th>categoria</th>
+        {%for game in gamelist%}
+            <tr>
+                <td>{{ game.title }}|</td>
+                <td>{{ game.year }}|</td>
+                <td>{{ game.category }}</td>
+            </tr>
+        {%endfor%}
+    </table>
+
+      {% endblock content%}

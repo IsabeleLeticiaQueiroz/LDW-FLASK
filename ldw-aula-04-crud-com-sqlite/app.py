@@ -1,23 +1,26 @@
-#importando o flask, o nome do pacote é em minusculo
-from flask import Flask, render_template 
+# Importando o Flask
+from flask import Flask, render_template
+# Importando o Controller (routes.py)
 from controllers import routes
+# Importando os Models
 from models.database import db
-# importando biblioteca para manipular diretorios
+# Importando a biblioteca para manipulação do S.O
 import os
-# criando instancia do flask
-app = Flask(__name__, template_folder='views') #__name__ representa o nome da aplicacao
+
+# Criando uma instância do Flask
+app = Flask(__name__, template_folder='views')  # __name__ representa o nome da aplicação
 routes.init_app(app)
-dir = os.path.abspath(os.path.dirname(__file__)) #pegando o diretorio atual do arquivo app.py
-# CRIANDO ARQUIVO DO BANCO DE DADOS
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(dir, 'models/games.sqlite3')  #configurando o banco de dados
 
+# Extraindo o diretório absoluto do arquivo
+dir = os.path.abspath(os.path.dirname(__file__))
+# Criando o arquivo do banco
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(dir, 'models/games.sqlite3')
+# Se for executado diretamente pelo interpretador
 if __name__ == '__main__':
-    db.init_app(app)
-    with app.app_context():
-        db.create_all()  # criar o banco de dados se nao existir
-    app.run(host='0.0.0.0', port=5000, debug=True)  # iniciar o servidor
-
-# como rodar a aplicacao? "python app.py" no terminal
-# a porta padrao do flask é 5000
-
-
+    # Enviando o Flask para SqlAlchemy
+    db.init_app(app=app)
+    # Verificar no início da aplicação se o BD já existe. Se não, ele cria.
+    with app.test_request_context():
+        db.create_all()          
+    # Iniciando o servidor
+    app.run(host='0.0.0.0', port=5000, debug=True)

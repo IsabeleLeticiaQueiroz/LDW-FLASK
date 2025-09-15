@@ -1,7 +1,11 @@
-    {%extends 'base.html'%}
+    {% extends 'base.html' %}
+    
     {% block content %}
-    <h2>Essa é a homepage</h2>
+
+    <h2>Esta é a Homepage!</h2>
     <hr>
-    <!-- no flask é mais recomendável linkar pela função e nao url -->
-    <a href="{{url_for('games')}}"><p>Ir para a página de jogos</p></a>
-    {% endblock %}
+
+    <a href="/games"><p>Página de jogos</p></a>
+    <a href="{{url_for('newgame')}}"><p>Cadastrar jogos</p></a>
+
+    {% endblock content %}

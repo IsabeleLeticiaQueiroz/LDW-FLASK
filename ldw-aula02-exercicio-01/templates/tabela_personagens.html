@@ -3,7 +3,7 @@
 {% block content %}
 <div class="modern-container">
     <div class="modern-grid">
-        <!-- Formulário Moderno -->
+        <!-- Formulário (mantido igual) -->
         <div>
             <h2 class="modern-title">Adicionar Novo Personagem</h2>
             <div class="modern-form">
@@ -40,7 +40,15 @@
                         <label for="caracteristica" class="form-label">
                             <i class="bi bi-stars modern-icon"></i>Característica Especial
                         </label>
-                        <textarea class="form-control" id="caracteristica" name="caracteristica" rows="3" required placeholder="Ex: Tem um vestilo azul florido"></textarea>
+                        <textarea class="form-control" id="caracteristica" name="caracteristica" rows="3" required placeholder="Ex: Tem um vestido azul florido"></textarea>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="imagem" class="form-label">
+                            <i class="bi bi-image modern-icon"></i>URL da Imagem
+                        </label>
+                        <input type="url" class="form-control" id="imagem" name="imagem" placeholder="https://exemplo.com/imagem.jpg">
+                        <small class="form-text text-muted">Cole o link de uma imagem do personagem (opcional)</small>
                     </div>
                     
                     <button type="submit" class="btn modern-btn w-100">
@@ -50,38 +58,39 @@
             </div>
         </div>
         
-        <!-- Tabela Moderna com Imagens -->
+        <!-- Tabela Corrigida -->
         <div>
-            <h2 class="modern-title" >Personagens por Família</h2 class="modern-title">
+            <h2 class="modern-title">Todos os Personagens</h2>
             
             {% if personagens %}
-                {% for familia, chars in personagens.items() %}
                 <div class="modern-table-container mb-4">
-                    <h3 style="color: rgb(46, 46, 46); font-size: 18px !important; text-align: center;">{{ familia }}</h3>
                     <div class="table-responsive">
                         <table class="table modern-table">
                             <thead>
                                 <tr>
                                     <th>Nome</th>
+                                    <th>Família</th>
                                     <th>Idade</th>
                                     <th>Profissão</th>
                                     <th>Característica</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for char in chars %}
-                                <tr>
-                                    <td><strong>{{ char.nome }}</strong></td>
-                                    <td>{{ char.idade }}</td>
-                                    <td>{{ char.profissao }}</td>
-                                    <td>{{ char.caracteristica }}</td>
-                                </tr>
+                                {% for familia, chars in personagens.items() %}
+                                    {% for char in chars %}
+                                    <tr>
+                                        <td><strong>{{ char.name }}</strong></td>
+                                        <td>{{ char.family }}</td>
+                                        <td>{{ char.age }}</td>
+                                        <td>{{ char.occupation }}</td>
+                                        <td>{{ char.characteristic }}</td>
+                                    </tr>
+                                    {% endfor %}
                                 {% endfor %}
                             </tbody>
                         </table>
                     </div>
                 </div>
-                {% endfor %}
             {% else %}
                 <div class="modern-alert">
                     <i class="bi bi-info-circle-fill"></i>
@@ -91,4 +100,22 @@
         </div>
     </div>
 </div>
+
+<style>
+.character-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 3px solid #8a6d3b;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    display: block;
+    background: white;
+}
+
+
+.table td {
+    vertical-align: middle;
+}
+</style>
 {% endblock %}

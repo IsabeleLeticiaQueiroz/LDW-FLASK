@@ -25,15 +25,9 @@
                             <option value="Urso">Urso</option>
                             <option value="Gato">Gato</option>
                             <option value="Cachorro">Cachorro</option>
+                            <option value="">Porco-espinho</option>
                             <option value="Outro">Outro</option>
                         </select>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <label for="casa" class="form-label">
-                            <i class="bi bi-house-fill modern-icon"></i>Casa/Fazenda
-                        </label>
-                        <input type="text" class="form-control" id="casa" name="casa" required placeholder="Ex: Casa da Árvore">
                     </div>
                     
                     <div class="mb-4">
@@ -42,8 +36,15 @@
                         </label>
                         <input type="number" class="form-control" id="membros" name="membros" min="1" max="10" required>
                     </div>
-                  
                     
+                    <div class="mb-4">
+                        <label for="imagem" class="form-label">
+                            <i class="bi bi-image modern-icon"></i>URL da Imagem da Família
+                        </label>
+                        <input type="url" class="form-control" id="imagem" name="imagem" placeholder="https://exemplo.com/imagem.jpg">
+                        <small class="form-text text-muted">Cole o link de uma imagem da família (opcional)</small>
+                    </div>
+                  
                     <button type="submit" class="btn modern-btn">
                         <i class="bi bi-plus-circle"></i> Adicionar Família
                     </button>
@@ -58,13 +59,11 @@
                     {% for familia in familias %}
                     <div class="col-md-6 mb-4">
                         <div class="card h-100 sylvanian-card">
-                            
                             <div class="card-body">
-                                <h5 class="card-title">{{ familia.nome_familia }}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">{{ familia.especie }}</h6>
+                                <h5 class="card-title">{{ familia.name }}</h5> 
+                                <h6 class="card-subtitle mb-2 text-muted">{{ familia.species }}</h6>  
                                 <p class="card-text">
-                                    <i class="bi bi-house"></i> {{ familia.casa }}<br>
-                                    <i class="bi bi-people"></i> {{ familia.membros }} membros
+                                    <i class="bi bi-people"></i> {{ familia.members }} membros  
                                 </p>
                             </div>
                         </div>

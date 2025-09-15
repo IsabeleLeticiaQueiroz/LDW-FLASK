@@ -2,7 +2,6 @@
 
 {% block content %}
 <div class="container mt-4 ">
-    <!-- SEÇÃO DE FAMÍLIAS -->
     <div class="row mb-5">
         <div class="col-12">
             <h2 class="modern-title text-center mb-4" style="padding-top: 5%;">Famílias Sylvanian</h2>
@@ -22,7 +21,6 @@
                             <h6 class="card-subtitle mb-2 text-muted">{{ familia.species }}</h6>
                             <p class="card-text">
                                 <i class="bi bi-people"></i> {{ familia.members }} membros
-                                <!-- REMOVI A CASA QUE NÃO EXISTE -->
                             </p>
                         </div>
                     </div>
@@ -32,7 +30,6 @@
         </div>
     </div>
 
-    <!-- SEÇÃO DE PERSONAGENS POR FAMÍLIA -->
     <div class="row">
         <div class="col-12">
             <h2 class="modern-title text-center mb-4">Personagens</h2>
@@ -70,76 +67,4 @@
         </div>
     </div>
 </div>
-
-<style>
-/* Estilos para Famílias */
-.sylvanian-family-card {
-    border: 3px solid #e4d3e4;
-    border-radius: 15px;
-    overflow: hidden;
-    transition: transform 0.3s;
-}
-
-.sylvanian-family-card:hover {
-    transform: translateY(-5px);
-}
-
-.family-image {
-    height: 200px;
-    object-fit: cover;
-}
-
-.no-family-image {
-    height: 200px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 48px;
-    color: #8a6d3b;
-}
-
-/* Estilos para Personagens */
-.sylvanian-character-card {
-    border: 2px solid #e4d3e4;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s;
-}
-
-.sylvanian-character-card:hover {
-    transform: translateY(-3px);
-}
-
-.character-image {
-    height: 150px;
-    object-fit: cover;
-}
-
-.no-character-image {
-    height: 150px;
-    background: linear-gradient(135deg, #fff9e6 0%, #ffe4b5 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 36px;
-    color: #d4a76a;
-}
-
-/* Cabeçalho das famílias */
-.family-header {
-    color: #8a6bc9;
-    border-bottom: 2px solid #8a6bc9;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-.family-section {
-    background: #fef8fc;
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid #e4d3e4;
-}
-</style>
 {% endblock %}

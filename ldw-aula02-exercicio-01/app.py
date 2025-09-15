@@ -3,7 +3,6 @@ import requests
 
 app = Flask(__name__)
 
-# URLs das suas APIs públicas
 FAMILIES_API = "https://68c853475d8d9f5147350c80.mockapi.io/api/sylvanian-families/families"
 CHARACTERS_API = "https://68c853475d8d9f5147350c80.mockapi.io/api/sylvanian-families/characters"
 
@@ -56,15 +55,12 @@ def tabela_personagens():
 @app.route('/galeria')
 def galeria():
     try:
-        # Busca famílias da API
         response_familias = requests.get(FAMILIES_API)
         familias = response_familias.json()
         
-        # Busca personagens da API
         response_personagens = requests.get(CHARACTERS_API)
         todos_personagens = response_personagens.json()
         
-        # Organiza personagens por família
         personagens_por_familia = {}
         for char in todos_personagens:
             familia = char['family']
@@ -78,7 +74,6 @@ def galeria():
     
     except Exception as e:
         print(f"Erro na galeria: {str(e)}")
-        # Fallback: retorna template vazio se API falhar
         return render_template('galeria.html', 
                              familias=[], 
                              personagens_por_familia={})

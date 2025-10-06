@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="modern-container">
+    <div class="modern-grid">
+        <!-- Formulário (mantido igual) -->
+        <div>
+            <h2 class="modern-title">Adicionar Novo Personagem</h2>
+            <div class="modern-form">
+                <form method="POST">
+                    {% if edit_character %}
+                        <input type="hidden" name="id" value="{{ edit_character.id }}">
+                    {% endif %}
+                    <div class="mb-4">
+                        <label for="nome" class="form-label">
+                            <i class="bi bi-person-circle modern-icon"></i>Nome do Personagem
+                        </label>
+                        <input type="text" class="form-control" id="nome" name="nome" required placeholder="Ex: Coelhinho Felício" value="{{ edit_character.name if edit_character else '' }}">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="familia" class="form-label">
+                            <i class="bi bi-people-fill modern-icon"></i>Família
+                        </label>
+                        <input type="text" class="form-control" id="familia" name="familia" required placeholder="Ex: Família Coelho" value="{{ edit_character.family if edit_character else '' }}">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="idade" class="form-label">
+                            <i class="bi bi-balloon modern-icon"></i>Idade (anos)
+                        </label>
+                        <input type="number" class="form-control" id="idade" name="idade" min="0" placeholder="Ex: 5" value="{{ edit_character.age if edit_character and edit_character.age is not none else '' }}">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="profissao" class="form-label">
+                            <i class="bi bi-briefcase modern-icon"></i>Profissão
+                        </label>
+                        <input type="text" class="form-control" id="profissao" name="profissao" required placeholder="Ex: Padeiro" value="{{ edit_character.occupation if edit_character else '' }}">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="caracteristica" class="form-label">
+                            <i class="bi bi-stars modern-icon"></i>Característica Especial
+                        </label>
+                        <textarea class="form-control" id="caracteristica" name="caracteristica" rows="3" required placeholder="Ex: Tem um vestido azul florido">{{ edit_character.characteristic if edit_character else '' }}</textarea>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="imagem" class="form-label">
+                            <i class="bi bi-image modern-icon"></i>URL da Imagem
+                        </label>
+                        <input type="url" class="form-control" id="imagem" name="imagem" placeholder="https://exemplo.com/imagem.jpg" value="{{ edit_character.image if edit_character else '' }}">
+                        <small class="form-text text-muted">Cole o link de uma imagem do personagem (opcional)</small>
+                    </div>
+                    
+                    <button type="submit" class="btn modern-btn w-100">
+                        <i class="bi bi-plus-circle"></i> Adicionar Personagem
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Tabela Corrigida -->
+        <div>
+            <h2 class="modern-title">Todos os Personagens</h2>
+            
+            {% if personagens %}
+                <div class="modern-table-container mb-4">
+                    <div class="table-responsive">
+                        <table class="table modern-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Família</th>
+                                    <th>Idade</th>
+                                    <th>Profissão</th>
+                                    <th>Característica</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for familia, chars in personagens.items() %}
+                                    {% for char in chars %}
+                                    <tr>
+                                        <td><strong>{{ char.name }}</strong></td>
+                                        <td>{{ char.family }}</td>
+                                        <td>{{ char.age }}</td>
+                                        <td>{{ char.occupation }}</td>
+                                        <td>{{ char.characteristic }}</td>
+                                        <td class="text-end action-cell">
+                                            <a href="{{ url_for('routes.edit_personagem', cid=char.id) }}" class="btn-edit me-2" title="Editar personagem {{ char.name }}" aria-label="Editar personagem {{ char.name }}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                                                </svg>
+                                            </a>
+                                            <form method="POST" action="{{ url_for('routes.delete_personagem', cid=char.id) }}" style="display:inline-block">
+                                                <button type="submit" class="btn-delete" title="Deletar personagem {{ char.name }}" aria-label="Deletar personagem {{ char.name }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                                      <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% else %}
+                <div class="modern-alert">
+                    <i class="bi bi-info-circle-fill"></i>
+                    Nenhum personagem adicionado ainda. Use o formulário ao lado para adicionar personagens!
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+.character-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 3px solid #8a6d3b;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    display: block;
+    background: white;
+}
+
+
+.table td {
+    vertical-align: middle;
+}
+</style>
+{% endblock %}

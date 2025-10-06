@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Banner em largura total - fora do container -->
+<div class="full-width-banner">
+    <div class="container">
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 sylvanian-card">
+                <img src="{{ url_for('static', filename='images/families/card.png') }}" class="card-img-top" alt="Famílias Sylvanian">
+                <div class="card-body">
+                    <h5 class="card-title">Famílias</h5>
+                    <p class="card-text">Adicione e visualize todas as suas famílias Sylvanian. Registre a espécie, casa e membros de cada família.</p>
+                        <a href="{{ url_for('routes.lista_familias') }}" class="btn sylvanian-btn">Gerenciar Famílias</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 sylvanian-card">
+                <img src="{{ url_for('static', filename='images/characters/card.png') }}" class="card-img-top" alt="Personagens Sylvanian">
+                <div class="card-body">
+                    <h5 class="card-title">Personagens</h5>
+                    <p class="card-text">Conheça todos os personagens de cada família. Veja suas idades, profissões e características especiais.</p>
+                        <a href="{{ url_for('routes.tabela_personagens') }}" class="btn sylvanian-btn">Gerenciar Personagens</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 sylvanian-card">
+                <img src="{{ url_for('static', filename='images/banner.png') }}" class="card-img-top" alt="Mundo Sylvanian">
+                <div class="card-body">
+                    <h5 class="card-title">Galeria</h5>
+                    <p class="card-text">Em breve: uma galeria completa com fotos de todas as suas famílias e personagens Sylvanian!</p>
+                        <a href="{{ url_for('routes.galeria') }}" class="btn sylvanian-btn">Ver Galeria</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-lg-8 mx-auto">
+            <h2 class="text-center mb-4">Sobre o Sylvanianpedia</h2>
+            <p class="text-center">Sylvanian Families é uma adorável enciclopédia dos Sylvanian Families!</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

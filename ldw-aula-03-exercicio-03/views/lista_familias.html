@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-body">
+<div class="modern-container">
+    <div class="modern-grid">
+        <div>
+            <h2 class="modern-title">Adicionar Nova Família</h2>
+            <div class="modern-form">
+                <form method="POST">
+                    {# include hidden id when editing #}
+                    {% if edit_family %}
+                        <input type="hidden" name="id" value="{{ edit_family.id }}">
+                    {% endif %}
+                    <div class="mb-4">
+                        <label for="nome_familia" class="form-label">
+                            <i class="bi bi-people-fill modern-icon"></i>Nome da Família
+                        </label>
+                        <input type="text" class="form-control" id="nome_familia" name="nome_familia" required placeholder="Ex: Família Coelho" value="{{ edit_family.name if edit_family else '' }}">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="especie" class="form-label">
+                            <i class="bi bi-heart-fill modern-icon"></i>Espécie
+                        </label>
+                        <select class="form-control" id="especie" name="especie" required>
+                            <option value="">Selecione a espécie</option>
+                            <option value="Coelho" {% if edit_family and edit_family.species == 'Coelho' %}selected{% endif %}>Coelho</option>
+                            <option value="Urso">Urso</option>
+                            <option value="Gato">Gato</option>
+                            <option value="Cachorro">Cachorro</option>
+                            <option value="Urso" {% if edit_family and edit_family.species == 'Urso' %}selected{% endif %}>Urso</option>
+                            <option value="Gato" {% if edit_family and edit_family.species == 'Gato' %}selected{% endif %}>Gato</option>
+                            <option value="Cachorro" {% if edit_family and edit_family.species == 'Cachorro' %}selected{% endif %}>Cachorro</option>
+                            <option value="Porco-espinho" {% if edit_family and edit_family.species == 'Porco-espinho' %}selected{% endif %}>Porco-espinho</option>
+                            <option value="Outro" {% if edit_family and edit_family.species == 'Outro' %}selected{% endif %}>Outro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="membros" class="form-label">
+                            <i class="bi bi-person-plus modern-icon"></i>Número de Membros
+                        </label>
+                        <input type="number" class="form-control" id="membros" name="membros" min="1" max="10" required value="{{ edit_family.members if edit_family and edit_family.members is not none else '' }}">
+                    </div>
+
+                    
+                    <div class="mb-4">
+                        <label for="imagem" class="form-label">
+                            <i class="bi bi-image modern-icon"></i>URL da Imagem da Família
+                        </label>
+                        <input type="url" class="form-control" id="imagem" name="imagem" placeholder="https://exemplo.com/imagem.jpg" value="{{ edit_family.image if edit_family else '' }}">
+                        <small class="form-text text-muted">Cole o link de uma imagem da família (opcional)</small>
+                    </div>
+                  
+                    <button type="submit" class="btn modern-btn">
+                        <i class="bi bi-plus-circle"></i> Adicionar Família
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div>
+            <h2 class="modern-title">Famílias Cadastradas</h2>
+            
+            {% if familias %}
+                <div class="row">
+                    {% for familia in familias %}
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 sylvanian-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h5 class="card-title">{{ familia.name }}</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">{{ familia.species }}</h6>
+                                    </div>
+                                    <div class="family-actions text-end">
+                                        <a href="{{ url_for('routes.edit_familia', fid=familia.id) }}" class="btn-edit me-2" title="Editar" aria-label="Editar família {{ familia.name }}">
+                                            <!-- inline pencil SVG (inherits currentColor) -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                                            </svg>
+                                        </a>
+                                        <form method="POST" action="{{ url_for('routes.delete_familia', fid=familia.id) }}" style="display:inline-block">
+                                            <button type="submit" class="btn-delete" title="Deletar" aria-label="Deletar família {{ familia.name }}">
+                                                <!-- inline trash SVG (inherits currentColor) -->
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                                  <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+                                                </svg>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <p class="card-text mt-2">
+                                    <i class="bi bi-people"></i> {{ familia.members }} membros
+                                </p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="modern-alert">
+                    <i class="bi bi-info-circle-fill"></i>
+                    Nenhuma família cadastrada ainda. Use o formulário ao lado para adicionar famílias!
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

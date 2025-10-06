@@ -1,0 +1,599 @@
+:root {
+    --sylvanian-pink: #ff9ec3;
+    --sylvanian-light-pink: #ffcde0;
+    --sylvanian-brown: #2e1f27;
+    --sylvanian-light-brown: #d9b38c;
+    --sylvanian-green: #8dbc9a;
+    --navbar-color: #dddefa;
+    --sylvanian-fuchsia: #d81b60; /* fuchsia for delete button */
+}
+
+/* MUDANÇA PRINCIPAL: Fundo do body para branco */
+body {
+    background-color: #ffffff;
+    font-family: Verdana;
+    margin: 0;
+    padding: 0;
+}
+
+.logo-image {
+    max-width: 250px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    padding: 5px 0;
+}
+
+.sylvanianpedia-logo {
+    background-color: white;
+    padding: 15px 0;
+    text-align: center;
+    border-bottom: 2px solid var(--sylvanian-light-pink);
+}
+
+.sylvanianpedia-logo h1 {
+    display: none;
+}
+
+.sylvanianpedia-logo .slogan {
+    color: var(--sylvanian-brown);
+    font-size: 1rem;
+    margin: 5px 0 0 0;
+    font-style: italic;
+}
+
+.sylvanian-navbar {
+    background-color: var(--navbar-color) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    padding: 0;
+}
+
+.sylvanian-navbar .navbar-nav {
+    margin: 0 auto;
+}
+
+.sylvanian-navbar .nav-link {
+    color: #5a5a8a !important;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 0.8rem 1.5rem !important;
+    margin: 0 0.2rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.sylvanian-navbar .nav-link:hover {
+    color: #8a6bc9 !important;
+    transform: translateY(-2px);
+}
+
+.sylvanian-navbar .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #8a6bc9;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.sylvanian-navbar .nav-link:hover::after {
+    width: 70%;
+}
+
+.full-width-banner {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background-image: url('../images/background-index.png');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    height: 70vh;
+    min-height: 500px;
+    margin-top: 0;
+    margin-bottom: 3rem;
+    padding: 0;
+    border: none;
+    background-color: #ffffff;
+}
+
+.full-width-banner .container {
+    display: none;
+}
+
+.container.mt-4 {
+    margin-top: 0 !important;
+    background-color: #ffffff;
+}
+
+footer{
+    background-color: #dddefa;
+}
+
+.modern-container {
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+    border: 1px solid #f0f0f0;
+    margin-top: 2rem;
+    
+
+}
+
+.modern-title {
+    color: #6c757d;
+    font-weight: 500;
+    font-size: 1.5rem; 
+    margin-bottom: 1.5rem;
+    position: relative;
+    text-align: left; 
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.modern-title::after {
+    display: none; 
+}
+
+.modern-btn {
+    background: #6c757d;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    font-size: 1rem;
+    color: white;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(108, 117, 125, 0.2);
+    width: auto;
+    margin-top: 0.5rem;
+}
+
+.modern-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+    background: #5a6268; 
+    color: white;
+}
+
+/* Formulário mais clean */
+.modern-form {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.modern-form .form-label {
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.modern-form .form-control {
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+}
+
+.modern-form .form-control:focus {
+    border-color: #6c757d;
+    box-shadow: 0 0 0 2px rgba(108, 117, 125, 0.1);
+}
+
+
+.modern-icon {
+    color: #6c757d;
+    margin-right: 0.5rem;
+    font-size: 1rem;
+}
+
+
+.modern-family-header {
+    color: #6c757d;
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.modern-form .form-control:focus {
+    border-color: var(--sylvanian-pink);
+    box-shadow: 0 0 0 4px rgba(255, 158, 195, 0.15);
+    transform: translateY(-2px);
+}
+
+
+.modern-btn {
+    background-color: #fe9ec3;
+    border: none;
+    border-radius: 12px;
+    padding: 1rem 2.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: white;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.modern-btn:hover {
+    transform: translateY(-3px);
+    background-color: #ff7bad !important;
+    color: white;
+}
+
+.modern-table-container {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f0f0f0;
+    margin-bottom: 2rem;
+}
+
+.modern-table {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e8e8e8;
+    margin: 0;
+}
+
+.modern-table thead {
+    background: linear-gradient(135deg, var(--sylvanian-pink) 0%, #ff7bad 100%);
+}
+
+.modern-table th {
+    border: none;
+    padding: 1.2rem;
+    font-weight: 600;
+    color: white;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.modern-table td {
+    padding: 1.2rem;
+    border-color: #e8e8e8;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.modern-table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.modern-table tbody tr:hover {
+    background-color: #f8f9fa;
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* stronger hover that colors cells (avoids small gaps from borders) */
+.modern-table tbody tr:hover td {
+    background-color: rgba(255, 158, 195, 0.05); /* very light pink */
+}
+
+/* ensure action cells don't wrap so buttons stay side-by-side */
+.action-cell {
+    white-space: nowrap;
+}
+
+/* ensure buttons inside table cells align and have small gap */
+.modern-table td .btn-edit,
+.modern-table td .btn-delete {
+    vertical-align: middle;
+    margin-left: 0.125rem;
+    margin-right: 0.25rem;
+}
+
+/* Header de família moderno */
+.modern-family-header {
+    color: var(--sylvanian-brown);
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--sylvanian-light-pink);
+    text-align: center;
+}
+
+/* Alert moderno */
+.modern-alert {
+    background: linear-gradient(135deg, #e8f5e8 0%, #d0edd0 100%);
+    border: none;
+    border-radius: 16px;
+    padding: 2rem;
+    color: #2e7d32;
+    border-left: 5px solid #4caf50;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+
+.modern-grid {
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: 1fr;
+}
+.espacinho{
+    margin-top: 50px;
+}
+
+.table img {
+    border: 2px solid #e8e8e8;
+    transition: all 0.3s ease;
+}
+
+.table img:hover {
+    transform: scale(1.1);
+    border-color: var(--sylvanian-pink);
+}
+
+
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+.card-img-top {
+    transition: transform 0.3s ease;
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.05);
+}
+@media (min-width: 992px) {
+    .modern-grid {
+        grid-template-columns: 1fr 1.3fr;
+        gap: 4rem;
+    }
+}
+
+
+.modern-icon {
+    color: var(--sylvanian-pink);
+    margin-right: 0.8rem;
+    font-size: 1.2rem;
+}
+
+.sylvanian-card {
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+    border: 1px solid #f0f0f0;
+}
+
+.sylvanian-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.sylvanian-card .card-img-top {
+    height: 220px;
+    object-fit: cover;
+}
+
+
+/* Action buttons (editar / deletar) - apply globally and inside .family-actions */
+.btn-edit, .btn-delete, .family-actions .btn-edit, .family-actions .btn-delete {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px; /* rounded-square */
+    padding: 0;
+    line-height: 0;
+    text-decoration: none;
+    border: 1.5px solid transparent;
+    box-sizing: border-box;
+    font-size: 0; /* remove glyph spacing */
+}
+
+.btn-edit, .family-actions .btn-edit {
+    background: #ffffff;
+    border-color: var(--sylvanian-pink);
+    color: var(--sylvanian-pink); /* svg uses currentColor */
+}
+.btn-edit svg, .family-actions .btn-edit svg {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-delete, .family-actions .btn-delete {
+    background: var(--sylvanian-fuchsia);
+    color: #ffffff; /* svg white */
+    border-color: var(--sylvanian-fuchsia);
+}
+.btn-delete svg, .family-actions .btn-delete svg {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-edit:hover, .family-actions .btn-edit:hover {
+    background: #fff0f6;
+}
+.btn-delete:hover, .family-actions .btn-delete:hover {
+    filter: brightness(0.95);
+}
+
+.sylvanian-btn {
+    background-color: #fe9ec3;
+    border: none;
+    border-radius: 12px;
+    padding: 0.8rem 2rem;
+    font-weight: 600;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 158, 195, 0.3);
+    text-align: center;
+}
+
+
+.sylvanian-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 158, 195, 0.4);
+    color: white;
+}
+
+.table img {
+    border: 2px solid #e8e8e8;
+    transition: all 0.3s ease;
+}
+
+.table img:hover {
+    transform: scale(1.1);
+    border-color: var(--sylvanian-pink);
+}
+
+/* Placeholder para imagens ausentes */
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+/* Ajuste para cards com imagens */
+.card-img-top {
+    transition: transform 0.3s ease;
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.05);
+}
+/* Responsividade */
+@media (max-width: 768px) {
+    .logo-image {
+        max-width: 200px;
+    }
+    
+    .sylvanianpedia-logo .slogan {
+        font-size: 0.9rem;
+    }
+    
+    .sylvanian-navbar .nav-link {
+        padding: 0.6rem 1rem !important;
+        font-size: 1rem;
+    }
+    
+    .full-width-banner {
+        height: 50vh;
+        min-height: 400px;
+    }
+    
+    .modern-container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .modern-title {
+        font-size: 1.8rem;
+    }
+    
+    .modern-form {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo-image {
+        max-width: 150px;
+    }
+    
+    .sylvanianpedia-logo .slogan {
+        font-size: 0.8rem;
+    }
+    
+    .sylvanianpedia-logo {
+        padding: 10px 0;
+    }
+    
+    .full-width-banner {
+        height: 40vh;
+        min-height: 300px;
+    }
+    
+    .modern-table-container {
+        padding: 1rem;
+    }
+    
+    .modern-table th,
+    .modern-table td {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Estilos para galeria.html */
+.sylvanian-family-card {
+    border: 3px solid #e4d3e4;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+.sylvanian-family-card:hover {
+    transform: translateY(-5px);
+}
+.family-image {
+    height: 200px;
+    object-fit: cover;
+}
+.no-family-image {
+    height: 200px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: #8a6d3b;
+}
+.sylvanian-character-card {
+    border: 2px solid #e4d3e4;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+.sylvanian-character-card:hover {
+    transform: translateY(-3px);
+}
+.character-image {
+    height: 250px;
+    object-fit: cover;
+}
+.no-character-image {
+    height: 150px;
+    background: linear-gradient(135deg, #fff9e6 0%, #ffe4b5 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    color: #d4a76a;
+}
+.family-header {
+    color: #8a6bc9;
+    border-bottom: 2px solid #8a6bc9;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.family-section {
+    background: #fef8fc;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #e4d3e4;
+}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4 ">
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="modern-title text-center mb-4" style="padding-top: 5%;">Famílias Sylvanian</h2>
+            <div class="row">
+                {% for familia in familias %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 sylvanian-family-card">
+                        {% if familia.image %}
+                        <img src="{{ familia.image }}" class="card-img-top family-image" alt="{{ familia.name }}">
+                        {% else %}
+                        <div class="no-family-image">
+                            <i class="bi bi-people-fill"></i>
+                        </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ familia.name }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ familia.species }}</h6>
+                            <p class="card-text">
+                                <i class="bi bi-people"></i> {{ familia.members }} membros
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h2 class="modern-title text-center mb-4">Personagens</h2>
+            
+            {% for familia, chars in personagens_por_familia.items() %}
+            <div class="family-section mb-5">
+                <h3 class="family-header">{{ familia }}</h3>
+                <div class="row">
+                    {% for char in chars %}
+                    <div class="col-md-3 col-sm-6 mb-4">
+                        <div class="card h-100 sylvanian-character-card">
+                            {% if char.image %}
+                            <img src="{{ char.image }}" class="card-img-top character-image" alt="{{ char.name }}">
+                            {% else %}
+                            <div class="no-character-image">
+                                <i class="bi bi-person-circle"></i>
+                            </div>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ char.name }}</h5>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        <i class="bi bi-balloon"></i> {{ char.age }}<br>
+                                        <i class="bi bi-briefcase"></i> {{ char.occupation }}<br>
+                                        <i class="bi bi-stars"></i> {{ char.characteristic }}
+                                    </small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

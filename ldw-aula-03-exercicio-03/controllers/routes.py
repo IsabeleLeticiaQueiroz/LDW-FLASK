@@ -11,7 +11,6 @@ def index():
 
 @bp.route('/familias', methods=['GET', 'POST'])
 def lista_familias():
-	# if form contains an 'id' field, treat as update
 	if request.method == 'POST':
 		fid = request.form.get('id')
 		payload = {
@@ -30,7 +29,6 @@ def lista_familias():
 		return redirect(url_for('routes.lista_familias'))
 
 	familias = db.get_families()
-	# if query param edit_id is present, fetch that family to prefill the form
 	edit_id = request.args.get('edit_id')
 	edit_family = None
 	if edit_id:
@@ -50,13 +48,11 @@ def delete_familia(fid):
 
 @bp.route('/familias/<int:fid>/edit', methods=['GET'])
 def edit_familia(fid):
-	# redirect to lista_familias with edit_id to prefill the form
 	return redirect(url_for('routes.lista_familias', edit_id=fid))
 
 
 @bp.route('/personagens', methods=['GET', 'POST'])
 def tabela_personagens():
-	# handle create/update
 	if request.method == 'POST':
 		cid = request.form.get('id')
 		payload = {
@@ -82,7 +78,6 @@ def tabela_personagens():
 		familia = char.get('family') or 'Sem Família'
 		personagens_por_familia.setdefault(familia, []).append(char)
 
-	# prefill edit if ?edit_id= is present
 	edit_id = request.args.get('edit_id')
 	edit_character = None
 	if edit_id:
@@ -116,4 +111,5 @@ def galeria():
 		personagens_por_familia.setdefault(familia, []).append(char)
 
 	return render_template('galeria.html', familias=familias, personagens_por_familia=personagens_por_familia)
+
 

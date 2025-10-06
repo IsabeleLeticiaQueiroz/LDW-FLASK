@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 import os
 
-# choose repository depending on environment
 if os.environ.get('USE_DB'):
     from repositories.sql_repo import get_all_families as get_families, create_family as post_family
 else:
@@ -25,3 +24,4 @@ def lista_familias():
     # API and DB return lists of dicts; templates accept dicts as well
     familias = familias_json
     return render_template('lista_familias.html', familias=familias)
+

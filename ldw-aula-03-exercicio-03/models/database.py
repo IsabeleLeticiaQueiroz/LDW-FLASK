@@ -12,7 +12,6 @@ def _get_conn():
 
 
 def init_db(app=None):
-    # create tables if they don't exist
     conn = _get_conn()
     cur = conn.cursor()
     cur.execute('''
@@ -35,17 +34,13 @@ def init_db(app=None):
             image TEXT
         )
     ''')
-    # perform safe migrations: ensure required columns exist and remove legacy 'year' if present
     cur.execute("PRAGMA table_info(families)")
     cols = [r[1] for r in cur.fetchall()]
-    # ensure image and members exist
     if 'image' not in cols:
         cur.execute('ALTER TABLE families ADD COLUMN image TEXT')
     if 'members' not in cols:
         cur.execute('ALTER TABLE families ADD COLUMN members INTEGER')
-    # If a legacy 'year' column exists, recreate the table without it (SQLite doesn't support DROP COLUMN)
     if 'year' in cols:
-        # create temporary table without 'year'
         cur.execute('''
             CREATE TABLE IF NOT EXISTS families_new (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -55,9 +50,7 @@ def init_db(app=None):
                 members INTEGER
             )
         ''')
-        # copy data from old table (ignore year)
         cur.execute('INSERT OR IGNORE INTO families_new (id, name, species, image, members) SELECT id, name, species, image, members FROM families')
-        # drop old table and rename
         cur.execute('DROP TABLE families')
         cur.execute('ALTER TABLE families_new RENAME TO families')
 
@@ -96,7 +89,6 @@ def get_family(fid: int) -> Dict[str, Any] | None:
 def update_family(fid: int, data: Dict[str, Any]) -> None:
     conn = _get_conn()
     cur = conn.cursor()
-    # normalize numeric fields
     members = data.get('members')
     try:
         members = int(members) if members not in (None, '') else None
@@ -121,7 +113,6 @@ def delete_family(fid: int) -> None:
 def add_family(data: Dict[str, Any]) -> int:
     conn = _get_conn()
     cur = conn.cursor()
-    # normalize numeric fields
     members = data.get('members')
     try:
         members = int(members) if members not in (None, '') else None
@@ -144,11 +135,9 @@ def get_characters() -> List[Dict[str, Any]]:
     out = []
     for r in rows:
         d = dict(r)
-        # normalize age to int if possible
         try:
             d['age'] = int(d['age']) if d.get('age') not in (None, '') else None
         except Exception:
-            # keep as-is if not convertible
             pass
         out.append(d)
     return out
@@ -186,7 +175,6 @@ def get_character(cid: int) -> Dict[str, Any] | None:
 def update_character(cid: int, data: Dict[str, Any]) -> None:
     conn = _get_conn()
     cur = conn.cursor()
-    # normalize age
     age = data.get('age')
     try:
         age = int(age) if age not in (None, '') else None
@@ -205,4 +193,5 @@ def delete_character(cid: int) -> None:
     cur.execute('DELETE FROM characters WHERE id = ?', (cid,))
     conn.commit()
     conn.close()
+
 
